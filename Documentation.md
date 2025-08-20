@@ -1,51 +1,66 @@
 
 # Dokumentace k SQL analýze
 
-## Otázka 2
-**Otázka:** Má výška HDP vliv na změny ve mzdách a cenách potravin?  
+data vycházejí z následujících tabulek:
+
+`t_petra_snajdrova_project_SQL_primary_final`
+ - obsahuje informace o průměrných mzdách rozdělených po odvětvích, včetně odvětví neuvedených (tj. hodnoty NULL)
+ - dále pak obsahuje informace o průměrných cenách potravin a to vše za Českou republiku
+ - pro výpočet mezd byl zvolen přepočtený počet na plný úvazek, který se oproti fyzickému lépe hodí
+   pro statistické účely
+ - data jsou uvedena za období 2006 - 2018
+
+`t_petra_snajdrova_project_SQL_secundary_final`
+   - obsahuje data o HDP Evropských zemí v letech 2006 - 2018
+
+## Otázka č. 1
+**Otázka:** Rostou v průběhu let mzdy ve všech odvětvích, nebo v některých klesají?  
 **Použité tabulky:**  
-- `t_petra_snajdrova_project_SQL_primary_final` – obsahuje mzdy a ceny potravin  
-- `t_secondary_hdp` – obsahuje data o HDP (pouze Czech Republic)
-
-### Postup analýzy
-1. Spočítali jsme meziroční procentuální růst HDP.  
-2. Spočítali jsme meziroční růst průměrných mezd a cen potravin.  
-3. Porovnali jsme růst HDP se změnami v cenách a mzdách pro **stejný rok** i **následující rok**.  
-
-### Shrnutí výsledků
-- Obecně platí, že **vyšší růst HDP** má **pozitivní vliv na mzdy**.  
-- Ceny potravin ale **nereagují přímo** na růst HDP – jejich růst je pomalejší a někdy nesouvisí.  
-- Větší korelace mezi HDP a mzdami je patrná s **ročním zpožděním** → růst HDP se do platů promítá více až **v následujícím roce**.
-
-### Závěr
-- **HDP má vliv na růst mezd.**  
-- **Vliv HDP na ceny potravin je slabší** a nelze říct, že výrazně rostou při zvýšení HDP.  
-- Největší souvislost se projevuje mezi HDP a mzdami, zejména s ročním odstupem.
-
----
-
-## Otázka 5
-**Otázka:** Kolik je možné si koupit litrů mléka a kilogramů chleba za průměrnou mzdu v prvním a posledním srovnatelném období?  
-**Použitá tabulka:**  
 - `t_petra_snajdrova_project_SQL_primary_final`
 
 ### Postup analýzy
-1. Vybrali jsme pouze zboží:  
-   - „Mléko polotučné pasterované“  
-   - „Chléb konzumní kmínový“  
-2. Spočítali jsme průměrné ceny mléka a chleba za jednotlivé roky.  
-3. Spočítali jsme průměrné mzdy za jednotlivé roky.  
-4. Zjistili jsme, **kolik kusů daného zboží** si lze koupit za průměrnou mzdu v každém roce.  
-5. Vybrali jsme **první** a **poslední** srovnatelný rok.
-
-### Shrnutí výsledků
-| Rok | Zboží                         | Průměrná mzda | Cena | Kolik kusů lze koupit |
-|------|------------------------------|---------------|------|------------------------|
-| 2000 | Chléb konzumní kmínový      | 12 205 Kč     | 14,50 Kč | ~841 ks |
-| 2000 | Mléko polotučné pasterované | 12 205 Kč     | 12,00 Kč | ~1 017 l |
-| 2023 | Chléb konzumní kmínový      | 40 325 Kč     | 38,90 Kč | ~1 036 ks |
-| 2023 | Mléko polotučné pasterované | 40 325 Kč     | 25,50 Kč | ~1 582 l |
+ - Porovnali jsme průměrnou hodnotu mezd za dané odvětví s předchozím rokem pomocí funkce `LAG` a zjistili tak,
+   zda-li mzdy klesly, nebo se navýšily, což je poté vidět ve sloupci `salary_status`.
+ - Data jsou až od roku 2007, v roce 2006 není srovnání s předchozím rokem.
+ - Explicitně neuvedená odvětví, tzn. ta s hodnotou NULL nejsou brána v potaz.
 
 ### Závěr
-- Kupní síla se **výrazně zvýšila**.  
-- I přes růst cen je možné si za průměrnou mzdu koupit **více mléka** i **více chleba** než na začátku sledovaného období.
+ - Až do roku 2008 včetně mzdy pouze stoupají, od roku 2009 v některých odvětvích začínají klesat.
+ - V letech 2007 - 2015 docházelo k všeobecnému ekonomickému poklesu na světových trzích (tzv. velká recese)
+   což se projevilo i meziročním poklesem mezd v někteých odvětvích.
+ - V roce 2013 došlo k poklesu mezd u 11 odvětví z 19ti, rok 2013 byl druhým rokem recese v řadě v ČR.
+ - nejčastěji a to 4x klesly mzdy ve sledovaném období v odvětví "Těžba a dobývání".
+
+---
+
+## Otázka č. 2
+**Otázka:** Kolik je možné si koupit litrů mléka a kilogramů chleba za první a poslední srovnatelné období v dostupných datech cen a mezd? 
+**Použité tabulky:**  
+- `t_petra_snajdrova_project_SQL_primary_final`
+
+### Postup analýzy
+ - Vybrali jsme pouze zboží:  
+   - „Mléko polotučné pasterované“  
+   - „Chléb konzumní kmínový“  
+ - Spočítali jsme průměrné ceny mléka a chleba za jednotlivé roky.  
+ - Spočítali jsme průměrné mzdy za jednotlivé roky.  
+ - Zjistili jsme, **kolik kusů daného zboží** si lze koupit za průměrnou mzdu v každém roce.  
+ - Vybrali jsme **první** a **poslední** srovnatelný rok. Tj. 2006 a 2018.
+
+### Závěr
+ - V prvním sledovaném období tj. v roce 2006 je možné zakoupit 1 309,54 kg chleba a 1 464,17 l mléka.
+ - V posledním sledovaném období, tj. rok 2018 je možné zakoupit 1 365,24 kg chleba a 1 668,64 l mléka.
+ - Brány v potaz jsou všechny mzdy včetně nevyplněného odvětví.
+
+---
+
+## Otázka č. 3
+**Otázka:** Kolik je možné si koupit litrů mléka a kilogramů chleba za první a poslední srovnatelné období v dostupných datech cen a mezd? 
+**Použité tabulky:**  
+- `t_petra_snajdrova_project_SQL_primary_final`
+
+
+
+
+
+
