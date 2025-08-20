@@ -15,4 +15,4 @@ Data jsou uložená v primární a sekundární tabulce a pomocí jednotlivých 
  
  * Nejdříve v PostgreSQL databázi otevřete soubor `Tables_primary_and_secundary.sql` a spusťte postupně scripty pro vytvoření primární a sekundární tabulky.
  * Dále spusťte jednotlivé SQL dotazy `Task_1.sql` až `Task_5.sql`.
- * Zodpovězené otázku jsou v uložené v souboru `Documentation.md` spolu s dalšími podrobnějšími informacemi o SQL dotazech.
+ * Zodpovězené otázku jsou uložené v souboru `Documentation.md` spolu s dalšími podrobnějšími informacemi o SQL dotazech.
