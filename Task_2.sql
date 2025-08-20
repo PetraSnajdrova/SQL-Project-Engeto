@@ -12,7 +12,7 @@ WITH cte_milk_bread_purchase AS (
 SELECT
 	year,
 	goods_name,
-	sum(How_many_units) AS Possible_purchase,
+	avg(How_many_units) AS Possible_purchase,
 	price_unit
 FROM cte_milk_bread_purchase
 WHERE year = 2006 OR year = 2018
