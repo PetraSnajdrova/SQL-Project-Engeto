@@ -1,7 +1,7 @@
 -- Primary table
 CREATE TABLE t_petra_snajdrova_project_SQL_primary_final AS
 SELECT
-	round(avg(cp2.value)::NUMERIC, 1) AS Avg_goods_value,
+	round(avg(cp2.value)::NUMERIC, 1) AS avg_goods_value,
 	cp.payroll_year AS year,
 	cpc.name AS goods_name,
 	cpc.price_value,
@@ -38,3 +38,4 @@ WHERE
 	c.continent = 'Europe'
 	AND e.year >= 2006
 	AND e.year <= 2018;
+
