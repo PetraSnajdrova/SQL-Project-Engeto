@@ -15,8 +15,7 @@ LEFT JOIN czechia_payroll_industry_branch cpib ON cp.industry_branch_code = cpib
 WHERE
 	cp.value_type_code = 5958
 	AND cp.calculation_code = 200
-	AND EXTRACT(YEAR FROM cp2.date_from) >=2006
-	AND EXTRACT(YEAR FROM cp2.date_from) <= 2018
+	AND EXTRACT(YEAR FROM cp2.date_from) BETWEEN 2006 AND 2018
 GROUP BY
 	cp.payroll_year,
 	cpc.name,
@@ -36,6 +35,6 @@ FROM economies e
 LEFT JOIN countries c ON e.country = c.country
 WHERE
 	c.continent = 'Europe'
-	AND e.year >= 2006
-	AND e.year <= 2018;
+	 AND e.year BETWEEN 2006 AND 2018;
+
 
