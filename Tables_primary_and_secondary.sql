@@ -1,16 +1,15 @@
-
 -- Primary table
 CREATE TABLE t_petra_snajdrova_project_SQL_primary_final AS
 SELECT
 	round(avg(cp2.value)::NUMERIC, 1) AS Avg_goods_value,
-	cp.payroll_year AS YEAR,
-	cpc.name AS Goods_name,
+	cp.payroll_year AS year,
+	cpc.name AS goods_name,
 	cpc.price_value,
 	cpc.price_unit,
-	cpib.name AS Branch_name,
-	round(avg(cp.value)::NUMERIC, 1) AS Avg_salary_value
+	cpib.name AS branch_name,
+	round(avg(cp.value)::NUMERIC, 1) AS avg_salary_value
 FROM czechia_payroll cp
-FULL OUTER join czechia_price cp2 ON EXTRACT(YEAR FROM cp2.date_from) = cp.payroll_year
+FULL OUTER JOIN czechia_price cp2 ON EXTRACT(YEAR FROM cp2.date_from) = cp.payroll_year
 LEFT JOIN czechia_price_category cpc ON cp2.category_code = cpc.code
 LEFT JOIN czechia_payroll_industry_branch cpib ON cp.industry_branch_code = cpib.code
 WHERE
