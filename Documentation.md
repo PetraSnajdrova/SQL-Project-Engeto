@@ -10,7 +10,7 @@ data vycházejí z následujících tabulek:
    pro statistické účely.
  - Data jsou uvedena za období 2006 - 2018.
 
-`t_petra_snajdrova_project_SQL_secundary_final`
+`t_petra_snajdrova_project_SQL_secondary_final`
    - obsahuje data o HDP Evropských zemí v letech 2006 - 2018
 
 ## Otázka č. 1
@@ -103,7 +103,7 @@ data vycházejí z následujících tabulek:
 
 **Použité tabulky:**
 - `t_petra_snajdrova_project_SQL_primary_final`
-- `t_petra_snajdrova_project_SQL_sekundary_final`
+- `t_petra_snajdrova_project_SQL_secondary_final`
 
 ### Postup analýzy
  - Spočítali jsme meziroční procentuální růst HDP.
