@@ -21,5 +21,5 @@ SELECT
 	END AS salary_status
 FROM cte_avg_salary_previous_year
 WHERE  avg_salary_value - avg_salary_previous_year != 0
-
 ORDER BY year ASC, branch_name ASC;
+
