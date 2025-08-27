@@ -13,14 +13,14 @@ Tyto SQL scripty slouží k zodpovězení zadaných výzkumných otázek.
 
 Data jsou uložená v primární a sekundární tabulce a pomocí jednotlivých dotazů dostaneme data potřebná k zodpovězení zadaných dotazů.
  
- * Nejdříve v PostgreSQL databázi otevřete soubor `Tables_primary_and_secundary.sql` a spusťte postupně scripty pro vytvoření primární a sekundární tabulky.
+ * Nejdříve v PostgreSQL databázi otevřete soubor `Tables_primary_and_secondary.sql` a spusťte postupně scripty pro vytvoření primární a sekundární tabulky.
  * Dále spusťte jednotlivé SQL dotazy `Task_1.sql` až `Task_5.sql`.
  * Zodpovězené otázku jsou uložené v souboru `Documentation.md` spolu s dalšími podrobnějšími informacemi o SQL dotazech.
 
  ## Obsah
  * `Documentation.md` - obsahuje odpovědi na otázky a specifikace dat.
  * `README.md` - obecné údaje a použtí.
- * `Tables_primary_and_secundary` - script k vytvoření primární a sekundární tabulky.
+ * `Tables_primary_and_secondary` - script k vytvoření primární a sekundární tabulky.
  * `Task_1.sql` - Script k zodpovězení otázky č. 1.
  * `Task_2.sql` - Script k zodpovězení otázky č. 2.
  * `Task_3.sql` - Script k zodpovězení otázky č. 3.
