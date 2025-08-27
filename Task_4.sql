@@ -39,9 +39,9 @@ SELECT
     ROUND(100 * ((avg_goods - prev_goods) / prev_goods - (avg_salary - prev_salary) / prev_salary ), 2) AS diff_pct
 FROM cte_growth
 WHERE prev_salary IS NOT NULL
-  AND prev_goods IS NOT NULL
-  AND (
+    AND prev_goods IS NOT NULL
+    AND (
         (avg_goods - prev_goods) / prev_goods
-      - (avg_salary - prev_salary) / prev_salary
-      ) > 0.10    -- rozdíl větší než 10 procentních bodů
+        - (avg_salary - prev_salary) / prev_salary
+        ) > 0.10    -- rozdíl větší než 10 procentních bodů
 ORDER BY year;
