@@ -5,7 +5,7 @@ WITH cte_avg_goods_value_previous_year AS (
 		DISTINCT year,	
 		avg_goods_value,
 		goods_name,
-		lag(Avg_goods_value) OVER (PARTITION BY Goods_name ORDER BY year) AS Avg_goods_previous_year
+		lag(Avg_goods_value) OVER (PARTITION BY Goods_name ORDER BY year) AS avg_goods_previous_year
 	FROM t_petra_snajdrova_project_sql_primary_final tpspspf
 	ORDER BY YEAR ASC, goods_name ASC
 )
@@ -13,11 +13,11 @@ WITH cte_avg_goods_value_previous_year AS (
 		year,
 		goods_name,
 		avg_goods_value,
-		Avg_goods_previous_year,
+		avg_goods_previous_year,
 		CASE
 			WHEN avg_goods_value - avg_goods_previous_year > 0 THEN (avg_goods_value * 100 / avg_goods_previous_year)-100
 			ELSE (avg_goods_value * 100 / avg_goods_previous_year)-100
-		END AS Goods_status_percentage
+		END AS goods_status_percentage
 	FROM cte_avg_goods_value_previous_year
 	WHERE  avg_goods_value - avg_goods_previous_year != 0
 	ORDER BY year ASC, goods_name ASC
